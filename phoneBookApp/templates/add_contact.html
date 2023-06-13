@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Contact</title>
+</head>
+<body>
+    <h1>Add Contact</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ contact_form.as_p }}
+
+        <h2>Phone Numbers</h2>
+        <div id="numbers-formset">
+            {% for form in number_formset %}
+                {{ form.as_p }}
+            {% endfor %}
+        </div>
+        <button id="add-number" type="button">Add Number</button>
+
+        <br>
+        <input type="submit" value="Save">
+    </form>
+
+    <script>
+        // JavaScript code to handle the "Add Number" button
+        const numbersFormset = document.getElementById('numbers-formset');
+        const addNumberBtn = document.getElementById('add-number');
+        let formCount = "{{ number_formset.total_form_count }}";
+
+        addNumberBtn.addEventListener('click', function() {
+            const newForm = document.createElement('div');
+            newForm.innerHTML = '{{ number_formset.empty_form|escapejs }}'.replace(/__prefix__/g, formCount);
+            numbersFormset.appendChild(newForm);
+            formCount++;
+        });
+        
+       
+    </script>
+</body>
+</html>

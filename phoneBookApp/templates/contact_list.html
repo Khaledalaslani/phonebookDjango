@@ -1,0 +1,9 @@
+<h2>Contacts</h2>
+<a href="add-contact">Add Contact</a>
+<ul>
+    {% for contact in contacts %}
+    <a href="{% url 'detail' contact.id %}">{{ contact.name }}</a>
+    
+    {% endfor %}
+
+</ul>

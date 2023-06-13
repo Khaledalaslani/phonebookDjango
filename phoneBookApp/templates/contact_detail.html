@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contact Detail</title>
+</head>
+<body>
+  <h1>{{ contact.name }}</h1>
+  <ul>
+    {% for number in contact.number_set.all %}
+      <li>{{ number.number }}</li>
+    {% endfor %}
+  </ul>
+</body>
+</html>
